@@ -13,6 +13,11 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
+    labels:
+      - "traefik.enable=${TRAERFIK_ENABLED}"
+      - "traefik.http.routers.app-sample.rule=Host(`sample.takumi-shinzato.com`)"
+      - "traefik.http.routers.app-sample.entrypoints=websecure"
+      - "traefik.http.routers.app-sample.tls.certresolver=letsencrypt"
     networks:
       - app-network
 
