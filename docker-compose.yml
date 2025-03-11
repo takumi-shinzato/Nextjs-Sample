@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  nextjs:
+    build: .
+    container_name: app-sample
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - APP_ENV=${APP_ENV}
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./:/app
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
